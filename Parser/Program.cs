@@ -11,7 +11,7 @@ var tokenSource = new CancellationTokenSource();
 
 void LogHandler(ParsedLine parsedLine)
 {
-    Console.WriteLine(parsedLine);
+    Console.WriteLine("Data: {0}", parsedLine);
 }
 
 var fileHandler = new LogFileHandler(filePath, LogHandler, tokenSource.Token);

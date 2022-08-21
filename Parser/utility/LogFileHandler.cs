@@ -49,5 +49,7 @@ public class LogFileHandler
                 Thread.Sleep(100);
             }
         }
+        _logFileStreamReader?.Close();
+        _logFileStream?.Close();
     }
 }
