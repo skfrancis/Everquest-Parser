@@ -6,7 +6,7 @@ public class ExpFilter : BaseFilter
 {
     public ExpFilter()
     {
-        Columns.AddRange(new []{"Type", "Bonus"});
+        Columns.AddRange(new [] {"Type", "Bonus"});
         Regexes = new Regex[]
         {
             new(@"^You gaine?d? (?<type>experience|party |raid )?(?:experience)?(?<bonus> \(with a bonus\))?!$",

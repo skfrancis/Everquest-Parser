@@ -2,15 +2,14 @@
 
 namespace Parser.filters.character;
 
-public class AltAdvancementFilter : BaseFilter
+public class FactionFilter : BaseFilter
 {
-    public AltAdvancementFilter()
+    public FactionFilter()
     {
-        Columns.AddRange(new [] {"Gained", "Banked"});
+        Columns.AddRange(new [] {"Faction", "Amount"});
         Regexes = new Regex[]
         {
-            new(@"^You have gained (?<gained>\d+) ability point\(s\)!\s+You now have (?<banked>\d+) ability point\(s\).$",
-                RegexOptions.Compiled)
+            new(@"^Your faction standing with (?<faction>[^.]+) has been adjusted by (?<amount>-?\d+)\.$", RegexOptions.Compiled)
         };
     }
     protected override Dictionary<string, string> ProcessResult(DateTime timeStamp, Match result)
@@ -19,9 +18,8 @@ public class AltAdvancementFilter : BaseFilter
         {
             {Columns[0], timeStamp.Date.ToShortDateString()},
             {Columns[1], timeStamp.TimeOfDay.ToString()},
-            {Columns[2], result.Groups["gained"].Value},
-            {Columns[3], result.Groups["banked"].Value}
-            
+            {Columns[2], result.Groups["faction"].Value},
+            {Columns[3], result.Groups["amount"].Value}
         };
         return data;
     }

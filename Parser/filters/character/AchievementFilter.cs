@@ -6,7 +6,7 @@ public class AchievementFilter : BaseFilter
 {
     public AchievementFilter()
     {
-        Columns.AddRange(new []{"Player", "Achievement"});
+        Columns.AddRange(new [] {"Player", "Achievement"});
         Regexes = new Regex[]
         {
             new(@"^(?:Your guildmate )?(?<player>.+?)(?: have| has) completed(?: achievement:)? (?<achievement>.+?)(?:$| achievement.$)",

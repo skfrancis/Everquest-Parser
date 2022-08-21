@@ -6,7 +6,7 @@ public class SkillsFilter : BaseFilter
 {
     public SkillsFilter()
     {
-        Columns.AddRange(new []{"Skill", "Level"});
+        Columns.AddRange(new [] {"Skill", "Level"});
         Regexes = new Regex[]
         {
             new(@"^You have become better at (?<skill>.+)! \((?<level>\d+)\)$", RegexOptions.Compiled)
