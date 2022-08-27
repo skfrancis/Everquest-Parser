@@ -6,6 +6,7 @@ public class AltAdvancementFilter : BaseFilter
 {
     public AltAdvancementFilter()
     {
+        FilterId = "AA";
         Columns.AddRange(new [] {"Gained", "Banked"});
         Regexes = new Regex[]
         {
@@ -17,6 +18,7 @@ public class AltAdvancementFilter : BaseFilter
     {
         var data = new Dictionary<string, string>
         {
+            {"FilterId", FilterId},
             {Columns[0], timeStamp.Date.ToShortDateString()},
             {Columns[1], timeStamp.TimeOfDay.ToString()},
             {Columns[2], result.Groups["gained"].Value},

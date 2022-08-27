@@ -2,15 +2,16 @@
 
 namespace Parser.filters.character;
 
-public class SkillsFilter : BaseFilter
+public class CastingFilter : BaseFilter
 {
-    public SkillsFilter()
+    public CastingFilter()
     {
-        FilterId = "Skill";
-        Columns.AddRange(new [] {"Skill", "Level"});
+        FilterId = "Casting";
+        Columns.AddRange(new [] {"Source", "Spell"});
         Regexes = new Regex[]
         {
-            new(@"^You have become better at (?<skill>.+)! \((?<level>\d+)\)$", RegexOptions.Compiled)
+            new(@"^(?<source>.+?) begins? (?:casting|singing) (?<spell>.+)\.$", RegexOptions.Compiled),
+            new(@"^(?<source>.+?) activates? (?<spell>.+)\.$", RegexOptions.Compiled)
         };
     }
     protected override Dictionary<string, string> ProcessResult(DateTime timeStamp, Match result)
@@ -20,8 +21,8 @@ public class SkillsFilter : BaseFilter
             {"FilterId", FilterId},
             {Columns[0], timeStamp.Date.ToShortDateString()},
             {Columns[1], timeStamp.TimeOfDay.ToString()},
-            {Columns[2], result.Groups["skill"].Value},
-            {Columns[3], result.Groups["level"].Value}
+            {Columns[2], result.Groups["source"].Value},
+            {Columns[3], result.Groups["spell"].Value}
         };
         return data;
     }

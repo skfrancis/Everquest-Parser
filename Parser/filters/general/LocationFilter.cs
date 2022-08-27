@@ -2,17 +2,17 @@
 
 namespace Parser.filters.general;
 
-public class WhoFilter : BaseFilter
+public class LocationFilter : BaseFilter
 {
-    public WhoFilter()
+    public LocationFilter()
     {
-        FilterId = "Who";
-        Columns.AddRange(new [] {"Name", "Class", "Level"});
+        FilterId = "Location";
+        Columns.AddRange(new [] {"X", "Y", "Z"});
         Regexes = new Regex[]
         {
-            new(@"^[A-Z\s]*\[(?:(ANONYMOUS)|(?<lvl>\d+) (?<class>[\w\s]+)|(?<lvl>\d+) .+? \((?<class>[\w\s]+)\))\](?:\s+(?<name>\w+))", 
-                RegexOptions.Compiled)
+            new(@"^Your Location is (?<Y>-?\d+.+?), (?<X>-?\d+.+?), (?<Z>-?\d+.+?)$", RegexOptions.Compiled)
         };
+
     }
     protected override Dictionary<string, string> ProcessResult(DateTime timeStamp, Match result)
     {
@@ -21,9 +21,9 @@ public class WhoFilter : BaseFilter
             {"FilterId", FilterId},
             {Columns[0], timeStamp.Date.ToShortDateString()},
             {Columns[1], timeStamp.TimeOfDay.ToString()},
-            {Columns[2], result.Groups["name"].Value},
-            {Columns[3], result.Groups["class"].Value},
-            {Columns[4], result.Groups["lvl"].Value}
+            {Columns[2], result.Groups["X"].Value},
+            {Columns[3], result.Groups["Y"].Value},
+            {Columns[4], result.Groups["Z"].Value}
         };
         return data;    
     }

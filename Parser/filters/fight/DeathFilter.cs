@@ -18,6 +18,7 @@ public class DeathFilter : BaseFightFilter
     {
         var data = new Dictionary<string, string>
         {
+            {"FilterId", FilterId},
             {Columns[0], timeStamp.ToShortDateString()},
             {Columns[1], timeStamp.TimeOfDay.ToString()},
             {Columns[2], result.Groups[1].Value},

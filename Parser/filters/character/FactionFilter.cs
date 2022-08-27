@@ -6,6 +6,7 @@ public class FactionFilter : BaseFilter
 {
     public FactionFilter()
     {
+        FilterId = "Faction";
         Columns.AddRange(new [] {"Faction", "Amount"});
         Regexes = new Regex[]
         {
@@ -16,6 +17,7 @@ public class FactionFilter : BaseFilter
     {
         var data = new Dictionary<string, string>
         {
+            {"FilterId", FilterId},
             {Columns[0], timeStamp.Date.ToShortDateString()},
             {Columns[1], timeStamp.TimeOfDay.ToString()},
             {Columns[2], result.Groups["faction"].Value},

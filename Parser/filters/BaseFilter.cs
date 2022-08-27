@@ -1,12 +1,12 @@
 ﻿using Serilog;
 using Parser.utility;
-using System.Collections;
 using System.Text.RegularExpressions;
 
 namespace Parser.filters;
 
 public abstract class BaseFilter
 {
+    protected string FilterId = string.Empty;
     protected List<string> Columns { get; } = new() { "Date", "Time" }; 
     protected IEnumerable<Regex> Regexes { get; init; } = Array.Empty<Regex>();
 
@@ -16,7 +16,7 @@ public abstract class BaseFilter
         {
             var result = expression.Match(logLine.Text);
             if(!result.Success) continue;
-            Log.Logger.Debug("Filter Match: [Regex: {Expression}, Text: {Text}", expression.ToString(), logLine.Text);
+            Log.Logger.Debug("Filter Match: [FilterId: {FilterId}, Text: {Text}", FilterId, logLine.Text);
             return ProcessResult(logLine.Timestamp, result);
         }
         return new Dictionary<string, string>();

@@ -1,16 +1,17 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Parser.filters.character;
+namespace Parser.filters.general;
 
-public class SkillsFilter : BaseFilter
+public class SystemMessageFilter : BaseFilter
 {
-    public SkillsFilter()
+    public SystemMessageFilter()
     {
-        FilterId = "Skill";
-        Columns.AddRange(new [] {"Skill", "Level"});
+        FilterId = "System";
+        Columns.AddRange(new [] {"Message"});
         Regexes = new Regex[]
         {
-            new(@"^You have become better at (?<skill>.+)! \((?<level>\d+)\)$", RegexOptions.Compiled)
+            new(@"^<SYSTEMWIDE_MESSAGE>: ?(?<message>.+?)$", RegexOptions.Compiled)
+
         };
     }
     protected override Dictionary<string, string> ProcessResult(DateTime timeStamp, Match result)
@@ -20,9 +21,8 @@ public class SkillsFilter : BaseFilter
             {"FilterId", FilterId},
             {Columns[0], timeStamp.Date.ToShortDateString()},
             {Columns[1], timeStamp.TimeOfDay.ToString()},
-            {Columns[2], result.Groups["skill"].Value},
-            {Columns[3], result.Groups["level"].Value}
+            {Columns[2], result.Groups["message"].Value}
         };
-        return data;
+        return data;  
     }
 }

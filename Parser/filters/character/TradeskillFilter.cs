@@ -6,6 +6,7 @@ public class TradeskillFilter : BaseFilter
 {
     public TradeskillFilter()
     {
+        FilterId = "Tradeskill";
         Columns.AddRange(new []{"Source", "Created", "Item"});
         Regexes = new Regex[]
         {
@@ -19,6 +20,7 @@ public class TradeskillFilter : BaseFilter
     {
         var data = new Dictionary<string, string>
         {
+            {"FilterId", FilterId},
             {Columns[0], timeStamp.Date.ToShortDateString()},
             {Columns[1], timeStamp.TimeOfDay.ToString()},
             {Columns[2], result.Groups["source"].Value},

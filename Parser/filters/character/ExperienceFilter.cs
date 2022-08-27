@@ -2,10 +2,11 @@
 
 namespace Parser.filters.character;
 
-public class ExpFilter : BaseFilter
+public class ExperienceFilter : BaseFilter
 {
-    public ExpFilter()
+    public ExperienceFilter()
     {
+        FilterId = "Experience";
         Columns.AddRange(new [] {"Type", "Bonus"});
         Regexes = new Regex[]
         {
@@ -17,6 +18,7 @@ public class ExpFilter : BaseFilter
     {
         var data = new Dictionary<string, string>
         {
+            {"FilterId", FilterId},
             {Columns[0], timeStamp.Date.ToShortDateString()},
             {Columns[1], timeStamp.TimeOfDay.ToString()},
             {Columns[2], result.Groups["type"].Value.Replace("experience", "solo")},

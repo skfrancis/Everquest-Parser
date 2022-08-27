@@ -4,6 +4,7 @@ public abstract class BaseFightFilter : BaseFilter
 {
     protected BaseFightFilter()
     {
-        Columns.AddRange(new []{"Source", "Target", "Amount", "Ability", "Mod", "Type"});    
+        FilterId = "Fight";
+        Columns.AddRange(new []{"Source", "Target", "Damage", "Amount", "Mod", "Type"});    
     }
 }

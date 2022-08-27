@@ -6,6 +6,7 @@ public class PetLeaderFilter : BaseFilter
 {
     public PetLeaderFilter()
     {
+        FilterId = "PetLeader";
         Columns.AddRange(new [] {"Leader", "Pet"});
         Regexes = new Regex[]
         {
@@ -16,6 +17,7 @@ public class PetLeaderFilter : BaseFilter
     {
         var data = new Dictionary<string, string>
         {
+            {"FilterId", FilterId},
             {Columns[0], timeStamp.Date.ToShortDateString()},
             {Columns[1], timeStamp.TimeOfDay.ToString()},
             {Columns[2], result.Groups["leader"].Value},
