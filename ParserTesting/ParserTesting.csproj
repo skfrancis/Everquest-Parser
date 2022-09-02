@@ -25,4 +25,10 @@
       <ProjectReference Include="..\Parser\Parser.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="filters\fight" />
+      <Folder Include="filters\general" />
+      <Folder Include="filters\loot" />
+    </ItemGroup>
+
 </Project>

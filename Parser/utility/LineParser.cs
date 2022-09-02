@@ -13,7 +13,7 @@ public static class LineParser
     {
         var timeStamp = DateTime.MinValue;
         var text = string.Empty;
-        var failedParse = new ParsedLine(timeStamp, text);
+        var failedParse = new ParsedLine {Timestamp = timeStamp, Text = text};
         
         var result = LineRegex.Match(logLine);
         if (result.Success)

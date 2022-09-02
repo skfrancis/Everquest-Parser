@@ -1,33 +1,22 @@
 ﻿using Parser.utility;
-
 namespace ParserTesting.utility;
 
 public class LineParserTests
 {
-    [Fact]
-    public void LogLineValid()
+    public static IEnumerable<object[]> Data => new List<object[]>
     {
-        const string validLine = "[Thu Jul 07 10:59:01 2022] Welcome to EverQuest!";
-        var parsedLine = LineParser.Parse(validLine);
-        Assert.Equal(new DateTime(2022, 07, 07, 10, 59, 01), parsedLine.Timestamp);
-        Assert.Equal("Welcome to EverQuest!", parsedLine.Text);
-    }
+        new object[] { "[Thu Jul 07 10:59:01 2022] Welcome to EverQuest!", new DateTime(2022, 07, 07, 10, 59, 01), "Welcome to EverQuest!" },
+        new object[] { "[Thu Jul 99 10:59:01 2022] Welcome to EverQuest!", DateTime.MinValue, string.Empty },
+        new object[] { "This is an invalid log line", DateTime.MinValue, string.Empty },
+        new object[] { "", DateTime.MinValue, string.Empty },
+    };
 
-    [Fact]
-    public void LogLineInvalid()
+    [Theory]
+    [MemberData(nameof(Data))]
+    public void ValidationTests(string logLine, DateTime timestamp, string text)
     {
-        const string emptyLine = "This is an invalid log line";
-        var parsedLine = LineParser.Parse(emptyLine);
-        Assert.Equal(DateTime.MinValue, parsedLine.Timestamp);
-        Assert.Equal(string.Empty, parsedLine.Text);
-    }
-
-    [Fact]
-    public void LogLineEmpty()
-    {
-        const string emptyLine = "";
-        var parsedLine = LineParser.Parse(emptyLine);
-        Assert.Equal(DateTime.MinValue, parsedLine.Timestamp);
-        Assert.Equal(string.Empty, parsedLine.Text);
-    }
+        var parsedLine = LineParser.Parse(logLine);
+        Assert.Equal(timestamp, parsedLine.Timestamp);
+        Assert.Equal(text, parsedLine.Text);
+    }        
 }
