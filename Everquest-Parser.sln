@@ -2,7 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser", "Parser\Parser.csproj", "{FAE787DA-462C-4C6B-9376-776FF405C4FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParserTesting", "ParserTesting\ParserTesting.csproj", "{4D07802A-1F4C-4EDD-A7D0-F04B4E770115}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filter", "Filter\Filter.csproj", "{2ABF8840-6534-458B-A551-27DC21E1A817}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{9EEDD697-C363-4C90-9FAE-108824B232B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,9 +16,13 @@ Global
 		{FAE787DA-462C-4C6B-9376-776FF405C4FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAE787DA-462C-4C6B-9376-776FF405C4FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAE787DA-462C-4C6B-9376-776FF405C4FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D07802A-1F4C-4EDD-A7D0-F04B4E770115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D07802A-1F4C-4EDD-A7D0-F04B4E770115}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D07802A-1F4C-4EDD-A7D0-F04B4E770115}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D07802A-1F4C-4EDD-A7D0-F04B4E770115}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ABF8840-6534-458B-A551-27DC21E1A817}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ABF8840-6534-458B-A551-27DC21E1A817}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ABF8840-6534-458B-A551-27DC21E1A817}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ABF8840-6534-458B-A551-27DC21E1A817}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EEDD697-C363-4C90-9FAE-108824B232B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EEDD697-C363-4C90-9FAE-108824B232B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EEDD697-C363-4C90-9FAE-108824B232B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EEDD697-C363-4C90-9FAE-108824B232B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
