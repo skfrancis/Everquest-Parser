@@ -17,7 +17,7 @@ public class AchievementFilterTests
     public void ValidationTests(string text, string player, string achievement)
     {
         var timeStamp = DateTime.Now;
-        var parsedLine = new ParsedLine(timeStamp, text);
+        var parsedLine = new ParsedLineObject(timeStamp, text);
         var filteredLine = _testFilter.Filter(parsedLine);
         Assert.Equal(timeStamp.ToShortDateString(), filteredLine["Date"]);
         Assert.Equal(timeStamp.TimeOfDay.ToString(), filteredLine["Time"]);

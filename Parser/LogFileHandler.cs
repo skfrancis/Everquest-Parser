@@ -5,32 +5,34 @@ namespace Parser;
 
 public class LogFileHandler
 {
+    private readonly string _filePath;
     private readonly CancellationToken _token;
-    private readonly Action<ParsedLine> _handler;
-    private readonly FileStream? _logFileStream;
-    private readonly StreamReader? _logFileStreamReader;
+    private readonly Action<ParsedLineObject> _handler;
+    private FileStream? _logFileStream;
+    private StreamReader? _logFileStreamReader;
 
-
-    public LogFileHandler(string filePath, Action<ParsedLine> handler, CancellationToken token)
+    public LogFileHandler(string filePath, Action<ParsedLineObject> handler, CancellationToken token)
     {
-        _token = token;
+        _filePath = filePath;
         _handler = handler;
-        if (File.Exists(filePath))
-        {
-            Log.Logger.Debug("Log File: {FilePath}", filePath);
-            _logFileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-            _logFileStreamReader = new StreamReader(_logFileStream, Encoding.UTF8);
-        }
-        else
-        {
-            Log.Logger.Error("File not found: {FilePath}", filePath);
-        }
+        _token = token;
     }
 
     public Task Start()
     {
-        _logFileStream?.Seek(0, SeekOrigin.End);
-        return Task.Factory.StartNew(Run, TaskCreationOptions.LongRunning);
+        Log.Logger.Debug("Log File: {FilePath}", _filePath);
+        try
+        {
+            _logFileStream = new FileStream(_filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            _logFileStreamReader = new StreamReader(_logFileStream, Encoding.UTF8);
+            _logFileStream.Seek(0, SeekOrigin.End);
+            return Task.Factory.StartNew(Run, TaskCreationOptions.LongRunning);
+        }
+        catch (Exception e)
+        {
+            Log.Logger.Error("Start failed: {Message}", e.Message);
+            return Task.FromException(e);
+        }
     }
 
     private void Run()

@@ -7,13 +7,13 @@ namespace Parser;
 public static class LineParser
 {
     private const string DateFormat = "ddd MMM dd HH:mm:ss yyyy";
-    private static readonly Regex LineRegex = new (@"^\[(?<timestamp>.*?)] (?<text>.*?)$", RegexOptions.Compiled);
+    private static readonly Regex LineRegex = new (@"^\[(?<timestamp>.*?)\] (?<text>.*?)$", RegexOptions.Compiled);
 
-    public static ParsedLine Parse(string logLine)
+    public static ParsedLineObject Parse(string logLine)
     {
         var timeStamp = DateTime.MinValue;
         var text = string.Empty;
-        var failedParse = new ParsedLine {Timestamp = timeStamp, Text = text};
+        var failedParse = new ParsedLineObject {Timestamp = timeStamp, Text = text};
         
         var result = LineRegex.Match(logLine);
         if (result.Success)
@@ -24,7 +24,7 @@ public static class LineParser
             {
                 Log.Debug("Parsed Data: [Timestamp: {Timestamp}, Log Text: {LogText}]", 
                     parsedDateTime, result.Groups["text"].Value);
-                return new ParsedLine(parsedDateTime, result.Groups["text"].Value);
+                return new ParsedLineObject(parsedDateTime, result.Groups["text"].Value);
             }
         }
         Log.Logger.Error("Log line parse failed: [{LogLine}]", logLine);

@@ -10,7 +10,7 @@ public abstract class BaseFilter
     protected List<string> Columns { get; } = new() { "Date", "Time" }; 
     protected IEnumerable<Regex> Regexes { get; init; } = Array.Empty<Regex>();
 
-    public Dictionary<string, string> Filter(ParsedLine logLine)
+    public Dictionary<string, string> Filter(ParsedLineObject logLine)
     {
         foreach (var expression in Regexes)
         {
