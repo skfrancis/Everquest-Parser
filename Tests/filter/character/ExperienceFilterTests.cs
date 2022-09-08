@@ -21,10 +21,10 @@ public class ExperienceFilterTests
         var timeStamp = DateTime.Now;
         var parsedLine = new ParsedLineObject(timeStamp, text);
         var filteredLine = _testFilter.Filter(parsedLine);
-        Assert.Equal(timeStamp.ToShortDateString(), filteredLine["Date"]);
-        Assert.Equal(timeStamp.TimeOfDay.ToString(), filteredLine["Time"]);
-        Assert.Equal(results[0], filteredLine["Type"]);
-        Assert.Equal(results[1], filteredLine["Bonus"]);
+        Assert.Equal(timeStamp.ToShortDateString(), filteredLine?["Date"]);
+        Assert.Equal(timeStamp.TimeOfDay.ToString(), filteredLine?["Time"]);
+        Assert.Equal(results[0], filteredLine?["Type"]);
+        Assert.Equal(results[1], filteredLine?["Bonus"]);
     }
 
     [Fact]
@@ -33,6 +33,6 @@ public class ExperienceFilterTests
         const string validLine = "[Thu Jul 07 10:59:01 2022] Welcome to EverQuest!";
         var parsedLine = LineParser.Parse(validLine);
         var filteredLine = _testFilter.Filter(parsedLine);
-        Assert.Equal(new Dictionary<string, string>(), filteredLine);
+        Assert.Null(filteredLine);
     }
 }

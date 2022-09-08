@@ -19,11 +19,10 @@ public class SkillsFilterTests
         var timeStamp = DateTime.Now;
         var parsedLine = new ParsedLineObject(timeStamp, text);
         var filteredLine = _testFilter.Filter(parsedLine);
-        Assert.Equal(timeStamp.ToShortDateString(), filteredLine["Date"]);
-        Assert.Equal(timeStamp.TimeOfDay.ToString(), filteredLine["Time"]);
-        Assert.Equal(results[0], filteredLine["Skill"]);
-        Assert.Equal(results[1], filteredLine["Level"]);
-        
+        Assert.Equal(timeStamp.ToShortDateString(), filteredLine?["Date"]);
+        Assert.Equal(timeStamp.TimeOfDay.ToString(), filteredLine?["Time"]);
+        Assert.Equal(results[0], filteredLine?["Skill"]);
+        Assert.Equal(results[1], filteredLine?["Level"]);
     }
     
     [Fact]
@@ -32,6 +31,6 @@ public class SkillsFilterTests
         const string validLine = "[Thu Jul 07 10:59:01 2022] Welcome to EverQuest!";
         var parsedLine = LineParser.Parse(validLine);
         var filteredLine = _testFilter.Filter(parsedLine);
-        Assert.Equal(new Dictionary<string, string>(), filteredLine);
+        Assert.Null(filteredLine);
     }
 }

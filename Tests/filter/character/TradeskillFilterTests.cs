@@ -21,11 +21,11 @@ public class TradeskillFilterTests
         var timeStamp = DateTime.Now;
         var parsedLine = new ParsedLineObject(timeStamp, text);
         var filteredLine = _testFilter.Filter(parsedLine);
-        Assert.Equal(timeStamp.ToShortDateString(), filteredLine["Date"]);
-        Assert.Equal(timeStamp.TimeOfDay.ToString(), filteredLine["Time"]);
-        Assert.Equal(results[0], filteredLine["Source"]);
-        Assert.Equal(results[1], filteredLine["Created"]);
-        Assert.Equal(results[2], filteredLine["Item"]);
+        Assert.Equal(timeStamp.ToShortDateString(), filteredLine?["Date"]);
+        Assert.Equal(timeStamp.TimeOfDay.ToString(), filteredLine?["Time"]);
+        Assert.Equal(results[0], filteredLine?["Source"]);
+        Assert.Equal(results[1], filteredLine?["Created"]);
+        Assert.Equal(results[2], filteredLine?["Item"]);
     }
 
     [Fact]
@@ -34,6 +34,6 @@ public class TradeskillFilterTests
         const string validLine = "[Thu Jul 07 10:59:01 2022] Welcome to EverQuest!";
         var parsedLine = LineParser.Parse(validLine);
         var filteredLine = _testFilter.Filter(parsedLine);
-        Assert.Equal(new Dictionary<string, string>(), filteredLine);
+        Assert.Null(filteredLine);
     }
 }

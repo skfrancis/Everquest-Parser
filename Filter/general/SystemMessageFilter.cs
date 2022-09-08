@@ -10,8 +10,7 @@ public class SystemMessageFilter : BaseFilter
         Columns.AddRange(new [] {"Message"});
         Regexes = new Regex[]
         {
-            new(@"^<SYSTEMWIDE_MESSAGE>: ?(?<message>.+?)$", RegexOptions.Compiled)
-
+            new(@"^<SYSTEMWIDE_MESSAGE>:\s?(?<message>.+?)$", RegexOptions.Compiled)
         };
     }
     protected override Dictionary<string, string> ProcessResult(DateTime timeStamp, Match result)

@@ -1,28 +1,29 @@
-﻿
-namespace Tests.filter.character;
+﻿namespace tests.filter.general;
 
-public class AchievementFilterTests
+public class LocationFilterTests
 {
-    private readonly AchievementFilter _testFilter = new();
+    private readonly LocationFilter _testFilter = new();
+
     public static IEnumerable<object[]> Data => new List<object[]>
     {
-        new object[] { "Your guildmate Soandso has completed Guild Lobby Traveler achievement.", new[] {"Soandso", "Guild Lobby Traveler"} },
-        new object[] { "You have completed Guild Lobby Traveler achievement.", new[] {"You", "Guild Lobby Traveler"} }
+        new object[] {"Your Location is 43.22, 11.70, 3.74", new[] {"43.22", "11.70", "3.74"} },
+        new object[] {"Your Location is -431.22, 111.20, -223.65", new[] {"-431.22", "111.20", "-223.65"} }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
-    public void ValidationTests(string text, string [] results)
+    public void ValidationTests(string text, string[] results)
     {
         var timeStamp = DateTime.Now;
         var parsedLine = new ParsedLineObject(timeStamp, text);
         var filteredLine = _testFilter.Filter(parsedLine);
         Assert.Equal(timeStamp.ToShortDateString(), filteredLine?["Date"]);
         Assert.Equal(timeStamp.TimeOfDay.ToString(), filteredLine?["Time"]);
-        Assert.Equal(results[0], filteredLine?["Player"]);
-        Assert.Equal(results[1], filteredLine?["Achievement"]);
+        Assert.Equal(results[0], filteredLine?["Y"]);
+        Assert.Equal(results[1], filteredLine?["X"]);
+        Assert.Equal(results[2], filteredLine?["Z"]);
     }
-    
+
     [Fact]
     public void UnfilteredLine()
     {

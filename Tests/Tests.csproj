@@ -29,9 +29,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="filter\fight" />
-      <Folder Include="filter\general" />
-      <Folder Include="filter\loot" />
+        
     </ItemGroup>
 
 </Project>

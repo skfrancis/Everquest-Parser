@@ -10,8 +10,7 @@ public class WhoFilter : BaseFilter
         Columns.AddRange(new [] {"Name", "Class", "Level"});
         Regexes = new Regex[]
         {
-            new(@"^[A-Z\s]*\[(?:(ANONYMOUS)|(?<lvl>\d+) (?<class>[\w\s]+)|(?<lvl>\d+) .+? \((?<class>[\w\s]+)\))\](?:\s+(?<name>\w+))", 
-                RegexOptions.Compiled)
+            new(@"^[A-Z\s]*\[(?:(ANONYMOUS)|(?<lvl>\d+) (?<class>[\w\s]+)|(?<lvl>\d+) .+? \((?<class>[\w\s]+)\))\](?:\s+(?<name>\w+))", RegexOptions.Compiled)
         };
     }
     protected override Dictionary<string, string> ProcessResult(DateTime timeStamp, Match result)
