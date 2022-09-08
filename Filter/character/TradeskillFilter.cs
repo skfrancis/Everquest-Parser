@@ -12,8 +12,8 @@ public class TradeskillFilter : BaseFilter
         {
             new(@"^(?<source>.+?) (?<created>have fashioned the items together to create [^:]+:) (?<item>[^.]+)\.$", RegexOptions.Compiled),
             new(@"^(?<source>.+?) (?<created>has fashioned) (?<item>[^.]+)\.$", RegexOptions.Compiled),
-            new(@"^(?<source>.+?) (?<created>lacked the skills to fashion) (?<item>[^.]+)\.$", RegexOptions.Compiled),
-            new(@"^(?<source>.+?) (?<created>was not successful in making) (?<item>[^.]+)\.$", RegexOptions.Compiled)
+            new(@"^(?<source>.+?) (?<created>lacked the skills) to fashion (?<item>[^.]+)\.$", RegexOptions.Compiled),
+            new(@"^(?<source>.+?) (?<created>was not successful in making) (?<item>[^.]+)(?:\.|,\s.+!)$", RegexOptions.Compiled)
         };
     }
     protected override Dictionary<string, string> ProcessResult(DateTime timeStamp, Match result)

@@ -1,5 +1,4 @@
-﻿using Parser;
-
+﻿
 namespace Tests.parser;
 
 public class LineParserTests

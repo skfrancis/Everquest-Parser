@@ -1,26 +1,29 @@
-﻿
-namespace Tests.filter.character;
+﻿namespace Tests.filter.character;
 
-public class AchievementFilterTests
+public class SkillsFilterTests
 {
-    private readonly AchievementFilter _testFilter = new();
+    private readonly SkillsFilter _testFilter = new();
+    
     public static IEnumerable<object[]> Data => new List<object[]>
     {
-        new object[] { "Your guildmate Soandso has completed Guild Lobby Traveler achievement.", new[] {"Soandso", "Guild Lobby Traveler"} },
-        new object[] { "You have completed Guild Lobby Traveler achievement.", new[] {"You", "Guild Lobby Traveler"} }
+        new object[] {"You have become better at 1H Blunt! (198)", new[] {"1H Blunt", "198"} },
+        new object[] {"You have become better at Alteration! (108)", new[] {"Alteration", "108"} },
+        new object[] {"You have become better at Offense! (6)", new[] {"Offense", "6"} },
+        new object[] {"You have become better at 1H Piercing! (40)", new[] {"1H Piercing", "40"} }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
-    public void ValidationTests(string text, string [] results)
+    public void ValidationTests(string text, string[] results)
     {
         var timeStamp = DateTime.Now;
         var parsedLine = new ParsedLineObject(timeStamp, text);
         var filteredLine = _testFilter.Filter(parsedLine);
         Assert.Equal(timeStamp.ToShortDateString(), filteredLine["Date"]);
         Assert.Equal(timeStamp.TimeOfDay.ToString(), filteredLine["Time"]);
-        Assert.Equal(results[0], filteredLine["Player"]);
-        Assert.Equal(results[1], filteredLine["Achievement"]);
+        Assert.Equal(results[0], filteredLine["Skill"]);
+        Assert.Equal(results[1], filteredLine["Level"]);
+        
     }
     
     [Fact]

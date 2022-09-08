@@ -10,7 +10,7 @@ public class ExperienceFilter : BaseFilter
         Columns.AddRange(new [] {"Type", "Bonus"});
         Regexes = new Regex[]
         {
-            new(@"^You gaine?d? (?<type>experience|party |raid )?(?:experience)?(?<bonus> \(with a bonus\))?!$",
+            new(@"^You gaine?d? (?<type>experience|party|raid)(?:\sexperience)?(?<bonus>\s\(with a bonus\))?!$",
                 RegexOptions.Compiled)
         };
     }
