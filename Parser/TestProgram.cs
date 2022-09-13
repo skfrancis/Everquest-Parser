@@ -1,20 +1,9 @@
 ﻿using Parser;
 using Serilog;
 
-Log.Logger = new LoggerConfiguration()
-    .MinimumLevel.Debug()
-    .WriteTo.Console()
-    .CreateLogger();
-
-//const string filePath = "D:\\Games\\Steam\\steamapps\\common\\Everquest F2P\\Logs\\eqlog_Rarshaak_vaniki.txt";
-const string filePath = "eqlog_Rarshaak_vaniki.txt";
+var filePath = args[0];
+Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
 var tokenSource = new CancellationTokenSource();
-
-void LogHandler(ParsedLineObject parsedLine)
-{
-    Console.WriteLine("Data: {0}", parsedLine);
-}
-
 var fileHandler = new LogFileHandler(filePath, LogHandler, tokenSource.Token);
 
 try
@@ -24,4 +13,9 @@ try
 catch (Exception e)
 {
     Console.WriteLine(e.Message);
+}
+
+void LogHandler(ParsedLineObject parsedLine)
+{
+    Log.Logger.Information("TimeStamp: {Timestamp} Text: {Text}", parsedLine.Timestamp, parsedLine.Text);
 }
