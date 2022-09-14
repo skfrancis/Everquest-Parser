@@ -1,4 +1,6 @@
-﻿
+﻿using Utility.Filter.character;
+using Utility.Parser;
+
 namespace Tests.filter.character;
 
 public class CastingFilterTests

@@ -1,5 +1,5 @@
-﻿using Parser;
-using Serilog;
+﻿using Serilog;
+using Utility.Parser;
 
 var filePath = args[0];
 Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();

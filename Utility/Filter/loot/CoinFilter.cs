@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Filter.loot;
+namespace Utility.Filter.loot;
 
 public class CoinFilter : BaseFilter
 {

@@ -1,4 +1,7 @@
-﻿namespace Tests.filter.character;
+﻿using Utility.Filter.character;
+using Utility.Parser;
+
+namespace Tests.filter.character;
 
 public class PetLeaderFilterTests
 {

@@ -1,16 +1,16 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Filter.character;
+namespace Utility.Filter.character;
 
-public class ExperienceFilter : BaseFilter
+public class AltAdvancementFilter : BaseFilter
 {
-    public ExperienceFilter()
+    public AltAdvancementFilter()
     {
-        FilterId = "Experience";
-        Columns.AddRange(new [] {"Type", "Bonus"});
+        FilterId = "AA";
+        Columns.AddRange(new [] {"Gained", "Banked"});
         Regexes = new Regex[]
         {
-            new(@"^You gaine?d? (?<type>experience|party|raid)(?:\sexperience)?(?<bonus>\s\(with a bonus\))?!$",
+            new(@"^You have gained (?<gained>an|\d+) ability point(?:.+)?!\s+You now have (?<banked>\d+) ability point(?:.+)?.$",
                 RegexOptions.Compiled)
         };
     }
@@ -21,8 +21,8 @@ public class ExperienceFilter : BaseFilter
             {"FilterId", FilterId},
             {Columns[0], timeStamp.Date.ToShortDateString()},
             {Columns[1], timeStamp.TimeOfDay.ToString()},
-            {Columns[2], result.Groups["type"].Value.Replace("experience", "solo")},
-            {Columns[3], result.Groups["bonus"].Success.ToString()}
+            {Columns[2], result.Groups["gained"].Value.Replace("an", "1")},
+            {Columns[3], result.Groups["banked"].Value}
         };
         return data;
     }

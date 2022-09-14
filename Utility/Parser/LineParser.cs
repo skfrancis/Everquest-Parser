@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using Serilog;
 
-namespace Parser;
+namespace Utility.Parser;
 
 public static class LineParser
 {

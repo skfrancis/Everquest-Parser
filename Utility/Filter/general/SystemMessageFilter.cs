@@ -1,16 +1,16 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Filter.character;
+namespace Utility.Filter.general;
 
-public class PetLeaderFilter : BaseFilter
+public class SystemMessageFilter : BaseFilter
 {
-    public PetLeaderFilter()
+    public SystemMessageFilter()
     {
-        FilterId = "PetLeader";
-        Columns.AddRange(new [] {"Leader", "Pet"});
+        FilterId = "System";
+        Columns.AddRange(new [] {"Message"});
         Regexes = new Regex[]
         {
-            new(@"(?<pet>^.+) says, 'My leader is (?<leader>\w+)\.'$", RegexOptions.Compiled)
+            new(@"^<SYSTEMWIDE_MESSAGE>:\s?(?<message>.+?)$", RegexOptions.Compiled)
         };
     }
     protected override Dictionary<string, string> ProcessResult(DateTime timeStamp, Match result)
@@ -20,9 +20,8 @@ public class PetLeaderFilter : BaseFilter
             {"FilterId", FilterId},
             {Columns[0], timeStamp.Date.ToShortDateString()},
             {Columns[1], timeStamp.TimeOfDay.ToString()},
-            {Columns[2], result.Groups["leader"].Value},
-            {Columns[3], result.Groups["pet"].Value}
+            {Columns[2], result.Groups["message"].Value}
         };
-        return data;
+        return data;  
     }
 }

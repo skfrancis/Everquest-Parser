@@ -1,9 +1,9 @@
-﻿using Filter.character;
-using Filter.general;
-using Filter.loot;
-using Parser;
+﻿using Utility.Filter.character;
+using Utility.Filter.general;
+using Utility.Filter.loot;
+using Utility.Parser;
 
-namespace Filter;
+namespace Utility.Filter;
 
 public class FilterHandler
 {

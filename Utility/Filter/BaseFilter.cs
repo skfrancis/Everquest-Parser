@@ -1,8 +1,8 @@
 ﻿using System.Text.RegularExpressions;
-using Parser;
 using Serilog;
+using Utility.Parser;
 
-namespace Filter;
+namespace Utility.Filter;
 
 public abstract class BaseFilter
 {

@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Filter.character;
+namespace Utility.Filter.character;
 
 public class TradeskillFilter : BaseFilter
 {

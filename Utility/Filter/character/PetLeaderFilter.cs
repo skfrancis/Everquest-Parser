@@ -1,16 +1,16 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Filter.character;
+namespace Utility.Filter.character;
 
-public class SkillsFilter : BaseFilter
+public class PetLeaderFilter : BaseFilter
 {
-    public SkillsFilter()
+    public PetLeaderFilter()
     {
-        FilterId = "Skill";
-        Columns.AddRange(new [] {"Skill", "Level"});
+        FilterId = "PetLeader";
+        Columns.AddRange(new [] {"Leader", "Pet"});
         Regexes = new Regex[]
         {
-            new(@"^You have become better at (?<skill>.+)! \((?<level>\d+)\)$", RegexOptions.Compiled)
+            new(@"(?<pet>^.+) says, 'My leader is (?<leader>\w+)\.'$", RegexOptions.Compiled)
         };
     }
     protected override Dictionary<string, string> ProcessResult(DateTime timeStamp, Match result)
@@ -20,8 +20,8 @@ public class SkillsFilter : BaseFilter
             {"FilterId", FilterId},
             {Columns[0], timeStamp.Date.ToShortDateString()},
             {Columns[1], timeStamp.TimeOfDay.ToString()},
-            {Columns[2], result.Groups["skill"].Value},
-            {Columns[3], result.Groups["level"].Value}
+            {Columns[2], result.Groups["leader"].Value},
+            {Columns[3], result.Groups["pet"].Value}
         };
         return data;
     }

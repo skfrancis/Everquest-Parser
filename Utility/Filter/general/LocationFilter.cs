@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Filter.general;
+namespace Utility.Filter.general;
 
 public class LocationFilter : BaseFilter
 {

@@ -1,4 +1,5 @@
-﻿
+﻿using Utility.Parser;
+
 namespace Tests.parser;
 
 public class LineParserTests

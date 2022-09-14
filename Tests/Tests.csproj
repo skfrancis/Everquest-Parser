@@ -24,8 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Filter\Filter.csproj" />
-      <ProjectReference Include="..\Parser\Parser.csproj" />
+      <ProjectReference Include="..\Utility\Utility.csproj" />
     </ItemGroup>
 
     <ItemGroup>

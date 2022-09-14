@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Serilog;
 
-namespace Parser;
+namespace Utility.Parser;
 
 public class LogFileHandler
 {

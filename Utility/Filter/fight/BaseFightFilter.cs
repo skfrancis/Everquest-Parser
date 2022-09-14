@@ -1,4 +1,4 @@
-﻿namespace Filter.fight;
+﻿namespace Utility.Filter.fight;
 
 public abstract class BaseFightFilter : BaseFilter
 {

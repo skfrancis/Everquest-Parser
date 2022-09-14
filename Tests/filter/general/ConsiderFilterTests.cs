@@ -1,4 +1,7 @@
-﻿namespace tests.filter.general;
+﻿using Utility.Filter.general;
+using Utility.Parser;
+
+namespace tests.filter.general;
 
 public class ConsiderFilterTests
 {
