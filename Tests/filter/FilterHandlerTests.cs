@@ -12,7 +12,7 @@ public class FilterHandlerTests
     {
         const string validLine = "[Thu Jul 07 10:59:01 2022] Welcome to EverQuest!";
         var parsedLine = LineParser.Parse(validLine);
-        var filteredLine = _filterHandler.ProcessFilters(parsedLine);
+        var filteredLine = FilterHandler.ProcessFilters(parsedLine);
         Assert.Null(filteredLine);
     }
 }

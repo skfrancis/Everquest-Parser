@@ -27,8 +27,4 @@
       <ProjectReference Include="..\Utility\Utility.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-        
-    </ItemGroup>
-
 </Project>

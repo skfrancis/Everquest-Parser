@@ -5,7 +5,7 @@ namespace Utility.Filter.general;
 public class ZoneFilter : BaseFilter
 {
     private readonly string[] _nonZones;
-    
+    private readonly Dictionary<string, string> _ignored = new ();
     public ZoneFilter()
     {
         FilterId = "Zone";
@@ -24,10 +24,7 @@ public class ZoneFilter : BaseFilter
     }
     protected override Dictionary<string, string> ProcessResult(DateTime timeStamp, Match result)
     {
-        if (_nonZones.Any(nonZone => result.Groups[1].Value.Contains(nonZone)))
-        {
-            return new Dictionary<string, string>();
-        }
+        if (_nonZones.Any(nonZone => result.Groups[1].Value.Contains(nonZone))) return _ignored;
         var data = new Dictionary<string, string>
         {
             {"FilterId", FilterId},
