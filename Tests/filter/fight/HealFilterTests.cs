@@ -3,18 +3,16 @@ using Utility.Parser;
 
 namespace tests.filter.fight;
 
-public class DeathFilterTests
+public class HealFilterTests
 {
-    private readonly DeathFilter _testFilter = new();
+    private readonly HealFilter _testFilter = new();
     
     public static IEnumerable<object[]> Data => new List<object[]>
     {
-        new object[] {"Soandso has been slain by a Bolvirk warrior!", new[] {"A Bolvirk Warrior", "Soandso", "", "", "", "death" }},
-        new object[] {"You have been slain by an ukun juxtapincer!", new[] {"An Ukun Juxtapincer", "You", "", "", "", "death" }},
-        new object[] {"A Bolvirk defender has been slain by Soandso!", new[] {"Soandso", "A Bolvirk Defender", "", "", "", "death" }},
-        new object[] {"You have slain a lightning warrior diode!", new[] {"You", "A Lightning Warrior Diode", "", "", "", "death" }},
-        new object[] {"Soandso dies.", new[] {"Soandso", "Soandso", "", "", "", "death" }},
-        new object[] {"Balance of Speed died.", new[] {"Balance Of Speed", "Balance Of Speed", "", "", "", "death" }}
+        new object[] {"Soandso healed Randomplayer for 2257 (3024) hit points by Ethereal Light.", new[] {"Soandso", "Randomplayer", "2257:3024", "Ethereal Light", "", "heal" }},
+        new object[] {"Soandso healed Randomplayer for 1304 (5628) hit points by Ethereal Light. (Critical)", new[] {"Soandso", "Randomplayer", "1304:5628", "Ethereal Light", "Critical", "heal" }},
+        new object[] {"Soandso healed herself over time for 738 hit points by Elixir of Healing X.", new[] {"Soandso", "Soandso", "738:738", "Elixir of Healing X", "", "heal" }},
+        new object[] {"Soandso has been healed over time for 250 hit points by Celestial Regeneration I.", new[] {"", "Soandso", "250:250", "Celestial Regeneration I", "", "heal" }},
     };
     
     [Theory]
